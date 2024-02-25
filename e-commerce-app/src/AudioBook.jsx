@@ -13,7 +13,7 @@ class AudioBook {
 let atomicHabits = new AudioBook(
   "Atom Habits",
   "James Clear",
-  "7.99",
+  7.99,
   "5hrs and 35mins",
   "English",
   "An Easy and Proven Way to Build Good Habits and Break Bad Ones"

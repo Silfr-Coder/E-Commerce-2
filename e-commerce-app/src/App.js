@@ -49,7 +49,7 @@ function App() {
             <p>{audioBook.summary}</p>
             <p>£{audioBook.price}</p>
             {/* button to add audiobook to basket */}
-            <button onClick={() => addAudiobookToBasket({ audioBook })}>
+            <button onClick={() => addAudiobookToBasket(audioBook)}>
               <h3>Add to basket</h3>
             </button>
           </div>
