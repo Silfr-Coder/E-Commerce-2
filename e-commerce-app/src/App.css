@@ -1,20 +1,14 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.App-container {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
+  background-color: offwhite;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,11 +22,128 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* header items to be rendered */
+.header-container {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: max-content;
+  gap: 10px;
+  justify-content: space-around;
+  margin: 1px;
+  padding: 10px;
+  background-color: #028ff0;
+}
+
+.header-logo-box {
+  width: 200px;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 50px;
+  color: white;
+  font-size: 40px;
+  box-shadow: 5px 10px #555353;
+  text-align: center;
+}
+.header-logo-box:hover {
+  color: darkmagenta;
+  box-shadow: 20px black;
+  opacity: 50%;
+  cursor: pointer;
+}
+
+.header-username-box {
+  border: 1px solid black;
+  width: 200px;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 50px;
+  box-shadow: 5px 10px #555353;
+  text-align: center;
+  align-items: center;
+  background-color: #ffd700;
+}
+.header-credit-box {
+  border: 1px solid black;
+  width: 200px;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 50px;
+  box-shadow: 5px 10px #555355;
+  text-align: center;
+  background-color: #ffd700;
+}
+.header-welcome-box {
+  width: 350px;
+  height: 50px;
+
+  margin-bottom: 10px;
+  margin-left: 25vw;
+  margin-right: auto;
+  grid-column: span 2;
+  font-size: larger;
+  text-align: left;
+  box-shadow: 25%;
+  background-color: #028ff0;
+}
+.header-spend-summary-box {
+  border: 1px solid #000000;
+  width: 200px;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 50px;
+  box-shadow: 5px 10px #555355;
+  text-align: center;
+  background-color: #ffd700;
+}
+
+.audiobook-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: calc(1px + 2vmin);
+  text-wrap: wrap;
+  color: black;
+  border: 1px solid #ffd700;
+  padding: 10px;
+  width: 20vw;
+  height: 30vh;
+  background-color: 028ff0;
+}
+
+/* footer items to be rendered */
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(2, 200px);
+  grid-template-rows: max-content;
+  gap: 10px;
+  justify-content: center;
+  margin: 1px;
+  background-color: #028ff0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+}
+.footer-home {
+  width: 200px;
+  height: 20px;
+  justify-content: center;
+  background-color: #ffd700;
+  box-shadow: 5px 10px #555355;
+  text-align: center;
+}
+.footer-top-of-page {
+  width: 200px;
+  height: 20px;
+  justify-content: center;
+  background-color: #ffd700;
+  box-shadow: 5px 10px #555355;
+  text-align: center;
 }
