@@ -1,17 +1,15 @@
-function AudiobookPage() {
+import App from "../App";
+
+function AudiobookPage({ selectedAudiobook }) {
   return (
-    <>
-      {audiobookList.map((audiobook, index) => (
-        <Audiobook
-          key={index}
-          title={audiobook.title}
-          author={audiobook.author}
-          bookLength={audiobook.bookLength}
-          language={audiobook.language}
-          summary={audiobook.summary}
-        />
-      ))}
-    </>
+    <div>
+      <h3>title={selectedAudiobook.title}</h3>
+      <p>author={selectedAudiobook.author}</p>
+      <p>bookLength={selectedAudiobook.bookLength}</p>
+      <p>language={selectedAudiobook.language}</p>
+      <p>summary={selectedAudiobook.summary}</p>
+      <p>£{selectedAudiobook.price}</p>
+    </div>
   );
 }
 

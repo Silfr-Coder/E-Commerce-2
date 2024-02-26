@@ -37,6 +37,14 @@ function App() {
     setTotal(total + audioBook.price);
   };
 
+  //
+  const [selectedAudiobook, setSelectedAudiobook] = useState(null);
+
+  // function to handle the click event is an audiobook is clicked
+  const handleAudiobookClick = (audiobook) => {
+    setSelectedAudiobook(audiobook);
+  };
+
   return (
     <>
       <div className="App-container">
@@ -48,7 +56,7 @@ function App() {
               <div
                 key={index}
                 className="audiobook-container"
-                onClick="<AudiobookPage />"
+                onClick={() => handleAudiobookClick(audioBook)}
               >
                 <h3>{audioBook.title}</h3>
                 <p>{audioBook.author}</p>
@@ -70,6 +78,7 @@ function App() {
               {basket.map((audioBook, index) => (
                 <li key={index}>
                   {audioBook.title}: £{audioBook.price}
+                  <button>Remove {audioBook.title} from basket</button>
                 </li>
               ))}
             </ul>
@@ -78,6 +87,11 @@ function App() {
         </div>
         {/* display footer here */}
         <Footer footerItems={footerItems} />
+        // check if an audiobook is selected and display the audiobook page
+        {/* {selectedAudiobook && (
+          <AudiobookPage audiobook={selectedAudiobook.audiobook} />
+          console.log({selectedAudiobook.audiobook});
+        )} */}
       </div>
     </>
   );
