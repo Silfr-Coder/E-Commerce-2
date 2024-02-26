@@ -7,22 +7,26 @@ import { useState } from "react";
 import AudiobookPage from "./Components/AudiobookPage";
 
 function App() {
+  // using the useState hook to manage the state of the basket and the total cost
+  const [basket, setBasket] = useState([]);
+  const [total, setTotal] = useState(0);
+
   // setting-up the header
   const headerItems = [
     { className: "header-logo-box", text: "Ear Candy" },
     { className: "header-username-box", text: "UserName" },
-    { className: "header-credit-box", text: "Credit: " },
+    // { className: "header-credit-box", text: "Credit: " },
     { className: "header-welcome-box", text: "Welcome, " },
-    { className: "header-spend-summary-box", text: "Total: " },
+    {
+      className: "header-spend-summary-box",
+      text: "Total: £" + total.toFixed(2),
+    },
   ];
   // setting up the footer
   const footerItems = [
     { className: "footer-home", text: "Home" },
     { className: "footer-top-of-page", text: "Top of Page" },
   ];
-  // using the useState hook to manage the state of the basket and the total cost
-  const [basket, setBasket] = useState([]);
-  const [total, setTotal] = useState(0);
 
   // function to add audiobook to basket and update the total cost
   const addAudiobookToBasket = (audioBook) => {
@@ -77,8 +81,12 @@ function App() {
             <ul>
               {basket.map((audioBook, index) => (
                 <li key={index}>
-                  {audioBook.title}: £{audioBook.price}
-                  <button>Remove {audioBook.title} from basket</button>
+                  <p>
+                    {audioBook.title}: £{audioBook.price}
+                  </p>
+                  <button className="remove-Audiobook-button">
+                    <h5>Remove from basket</h5>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -87,8 +95,8 @@ function App() {
         </div>
         {/* display footer here */}
         <Footer footerItems={footerItems} />
-        // check if an audiobook is selected and display the audiobook page
-        {/* {selectedAudiobook && (
+        {/* check if an audiobook is selected and display the audiobook page */}
+        {/* {selectedAudiobook && (  
           <AudiobookPage audiobook={selectedAudiobook.audiobook} />
           console.log({selectedAudiobook.audiobook});
         )} */}

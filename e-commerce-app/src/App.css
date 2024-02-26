@@ -28,7 +28,8 @@
   justify-content: space-around;
   margin: 1px;
   padding: 10px;
-  background-color: #028ff0;
+  /* background-color: #028ff0; */
+  background-image: linear-gradient(blue, yellow);
 }
 
 .header-logo-box {
@@ -55,14 +56,13 @@
   text-align: center;
   align-items: center;
   color: white;
-  background-color: 028ff0;
+  /* background-image: linear-gradient(blue, yellow); */
 }
 .header-username-box:hover {
   color: #ffd700;
   box-shadow: 20px black;
-  cursor: pointer;
 }
-.header-credit-box {
+/* .header-credit-box {
   width: 200px;
   height: 25px;
   box-shadow: 10px 10px 10px #555355;
@@ -76,7 +76,7 @@
 .header-credit-box:hover {
   color: #ffd700;
   box-shadow: 20px black;
-}
+} */
 .header-welcome-box {
   width: 350px;
   height: 50px;
@@ -85,7 +85,6 @@
   font-size: 32px;
   text-align: left;
   text-shadow: 25px;
-  background-color: #028ff0;
 }
 .header-spend-summary-box {
   width: 200px;
@@ -98,7 +97,7 @@
   background-color: #ffd700;
 }
 .header-spend-summary-box:hover {
-  color: #ffd700;
+  color: black;
   box-shadow: 20px black;
 }
 /* main paige, audiobooks elements to be rendered */
@@ -108,22 +107,29 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
-  width: 65%;
+  width: 75%;
 }
 .audiobook-container {
-  width: calc(33.33% - 20px);
-  margin-bottom: 20px;
+  width: calc(20% - 20px);
+  margin-bottom: 50px;
   padding: 10px;
   border: 1px solid #ccc;
 }
 
 /* basket elements to be rendered */
 .basket-container {
-  position: fixed;
+  position: relative;
+  top: 0;
   right: 0;
   width: 20%;
   padding: 20px;
-  border: 1px solid #ccc;
+  /* background-color: #ffd700; */
+  background-image: linear-gradient(
+    to right,
+    rgb(245, 245, 212),
+    rgb(251, 251, 63)
+  );
+  /* border: 1px solid #ccc; */
 }
 
 /* footer items to be rendered */
@@ -133,19 +139,25 @@
   align-items: center;
   width: 100%;
   text-align: center;
+
   margin: 1px;
   padding: 20px;
-  background-color: #028ff0;
+  background-image: linear-gradient(yellow, blue);
 }
 .footer-home,
 .footer-top-of-page {
   width: 20%;
-  padding: 10px;
+  /* padding: 10px; */
   margin: auto;
   align-items: stretch;
   border: 1px solid #ccc;
-  background-color: #ffd700;
-  box-shadow: 5px 10px #555355;
+  background-image: linear-gradient(#ffd700);
+  color: white;
   text-align: center;
   border-radius: 5px;
+}
+.footer-home,
+.footer-top-of-page:hover {
+  color: white;
+  cursor: pointer;
 }
