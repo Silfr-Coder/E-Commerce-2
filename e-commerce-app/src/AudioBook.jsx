@@ -26,9 +26,20 @@ let ultraProcessedPeople = new AudioBook(
   "English",
   "Why Do We All Eat Stuff That Isn’t Food...and Why Can’t We Stop?"
 );
-
+let growAndMakeYourOwnDestiny = new AudioBook(
+  "Grow and Make Your Own Destiny",
+  "Paul & Lynette Penman",
+  20.99,
+  "3hrs and 35mins",
+  "English",
+  "Practical steps to live your best life at any age!"
+);
 // create a list of all the books to export
-const audioBookList = [atomicHabits, ultraProcessedPeople];
+const audioBookList = [
+  atomicHabits,
+  ultraProcessedPeople,
+  growAndMakeYourOwnDestiny,
+];
 
 // export audiobookList as a named export, a list of objects as a React component
 export { audioBookList };

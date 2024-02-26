@@ -4,15 +4,16 @@ import { audioBookList } from "./AudioBook";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import { useState } from "react";
+import AudiobookPage from "./Components/AudiobookPage";
 
 function App() {
   // setting-up the header
   const headerItems = [
     { className: "header-logo-box", text: "Ear Candy" },
     { className: "header-username-box", text: "UserName" },
-    { className: "header-credit-box", text: "Credit" },
+    { className: "header-credit-box", text: "Credit: " },
     { className: "header-welcome-box", text: "Welcome, " },
-    { className: "header-spend-summary-box", text: "Total" },
+    { className: "header-spend-summary-box", text: "Total: " },
   ];
   // setting up the footer
   const footerItems = [
@@ -40,30 +41,41 @@ function App() {
     <>
       <div className="App-container">
         <Header headerItems={headerItems} />
-        {audioBookList.map((audioBook, index) => (
-          <div key={index} className="audiobook-container">
-            <h3>{audioBook.title}</h3>
-            <p>{audioBook.author}</p>
-            <p>{audioBook.bookLength}</p>
-            <p>{audioBook.language}</p>
-            <p>{audioBook.summary}</p>
-            <p>£{audioBook.price}</p>
-            {/* button to add audiobook to basket */}
-            <button onClick={() => addAudiobookToBasket(audioBook)}>
-              <h3>Add to basket</h3>
-            </button>
-          </div>
-        ))}
-        <div className="basket-container">
-          <h3>Basket</h3>
-          <ul>
-            {basket.map((audioBook, index) => (
-              <li key={index}>{audioBook.title}</li>
+        {/* display the main content here */}
+        <div className="main-page-content">
+          <div className="books-container">
+            {audioBookList.map((audioBook, index) => (
+              <div
+                key={index}
+                className="audiobook-container"
+                onClick="<AudiobookPage />"
+              >
+                <h3>{audioBook.title}</h3>
+                <p>{audioBook.author}</p>
+                <p>{audioBook.bookLength}</p>
+                <p>{audioBook.language}</p>
+                <p>{audioBook.summary}</p>
+                <p>£{audioBook.price}</p>
+                {/* button to pass audiobook object directly to basket */}
+                <button onClick={() => addAudiobookToBasket(audioBook)}>
+                  <h3>Add to basket</h3>
+                </button>
+              </div>
             ))}
-          </ul>
-          <h3>Total: £{total}</h3>
+          </div>
+          <div className="basket-container">
+            {/* display the basket here */}
+            <h3>Basket</h3>
+            <ul>
+              {basket.map((audioBook, index) => (
+                <li key={index}>
+                  {audioBook.title}: £{audioBook.price}
+                </li>
+              ))}
+            </ul>
+            <h3>Total: £{parseFloat(total).toFixed(2)}</h3>
+          </div>
         </div>
-
         {/* display footer here */}
         <Footer footerItems={footerItems} />
       </div>
