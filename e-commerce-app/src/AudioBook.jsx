@@ -13,7 +13,7 @@ class AudioBook {
 let atomicHabits = new AudioBook(
   "Atom Habits",
   "James Clear",
-  7.99,
+  8.0,
   "5hrs and 35mins",
   "English",
   "An Easy and Proven Way to Build Good Habits and Break Bad Ones"
@@ -21,7 +21,7 @@ let atomicHabits = new AudioBook(
 let ultraProcessedPeople = new AudioBook(
   "Ultra-Processed People",
   "Chris van Tulleken, Dr Xand van Tulleken",
-  9.99,
+  10.0,
   "11hrs and 35mins",
   "English",
   "Why Do We All Eat Stuff That Isn’t Food...and Why Can’t We Stop?"
@@ -29,7 +29,7 @@ let ultraProcessedPeople = new AudioBook(
 let growAndMakeYourOwnDestiny = new AudioBook(
   "Grow and Make Your Own Destiny",
   "Paul & Lynette Penman",
-  20.99,
+  12.0,
   "3hrs and 35mins",
   "English",
   "Practical steps to live your best life at any age!"

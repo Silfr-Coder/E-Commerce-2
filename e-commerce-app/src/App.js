@@ -69,7 +69,10 @@ function App() {
                 <p>{audioBook.summary}</p>
                 <p>£{audioBook.price}</p>
                 {/* button to pass audiobook object directly to basket */}
-                <button onClick={() => addAudiobookToBasket(audioBook)}>
+                <button
+                  className="add-Audiobook-button"
+                  onClick={() => addAudiobookToBasket(audioBook)}
+                >
                   <h3>Add to basket</h3>
                 </button>
               </div>
@@ -84,7 +87,16 @@ function App() {
                   <p>
                     {audioBook.title}: £{audioBook.price}
                   </p>
-                  <button className="remove-Audiobook-button">
+                  {/* button to remove audiobook from basket */}
+                  <button
+                    className="remove-Audiobook-button"
+                    onClick={() => {
+                      const newBasket = [...basket];
+                      newBasket.splice(index, 1);
+                      setBasket(newBasket);
+                      setTotal(total - audioBook.price);
+                    }}
+                  >
                     <h5>Remove from basket</h5>
                   </button>
                 </li>
