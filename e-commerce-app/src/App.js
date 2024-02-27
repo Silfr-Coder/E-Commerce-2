@@ -5,6 +5,7 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import { useState } from "react";
 import AudiobookPage from "./Components/AudiobookPage";
+import BookImage from "./Components/open-book-2.jpeg";
 
 function App() {
   // using the useState hook to manage the state of the basket and the total cost
@@ -45,8 +46,13 @@ function App() {
   const [selectedAudiobook, setSelectedAudiobook] = useState(null);
 
   // function to handle the click event is an audiobook is clicked
-  const handleAudiobookClick = (audiobook) => {
-    setSelectedAudiobook(audiobook);
+  const handleAudiobookClick = (audioBook) => {
+    setSelectedAudiobook(audioBook);
+  };
+
+  const printToScreen = () => {
+    console.log("Clicked on div area");
+    // You can do any other necessary actions here to print to the screen
   };
 
   return (
@@ -60,7 +66,12 @@ function App() {
               <div
                 key={index}
                 className="audiobook-container"
-                onClick={() => handleAudiobookClick(audioBook)}
+                // pass the audiobook object to the handleAudiobookClick
+                //function
+                onClick={() => {
+                  handleAudiobookClick(audioBook);
+                  printToScreen(audioBook);
+                }}
               >
                 <h3>{audioBook.title}</h3>
                 <p>{audioBook.author}</p>
@@ -91,8 +102,10 @@ function App() {
                   <button
                     className="remove-Audiobook-button"
                     onClick={() => {
+                      //remove the audiobook from the basket
                       const newBasket = [...basket];
                       newBasket.splice(index, 1);
+                      // update the basket and the total cost
                       setBasket(newBasket);
                       setTotal(total - audioBook.price);
                     }}
@@ -107,11 +120,6 @@ function App() {
         </div>
         {/* display footer here */}
         <Footer footerItems={footerItems} />
-        {/* check if an audiobook is selected and display the audiobook page */}
-        {/* {selectedAudiobook && (  
-          <AudiobookPage audiobook={selectedAudiobook.audiobook} />
-          console.log({selectedAudiobook.audiobook});
-        )} */}
       </div>
     </>
   );
