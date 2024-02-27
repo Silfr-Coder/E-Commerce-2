@@ -25,7 +25,7 @@ function App() {
   ];
   // setting up the footer
   const footerItems = [
-    { className: "footer-home", text: "Home" },
+    // { className: "footer-home", text: "Home" },
     { className: "footer-top-of-page", text: "Top of Page" },
   ];
 
@@ -48,11 +48,11 @@ function App() {
   // function to handle the click event is an audiobook is clicked
   const handleAudiobookClick = (audioBook) => {
     setSelectedAudiobook(audioBook);
+    printToScreen(audioBook);
   };
 
-  const printToScreen = () => {
-    console.log("Clicked on div area");
-    // You can do any other necessary actions here to print to the screen
+  const printToScreen = (audioBook) => {
+    console.log(audioBook.title);
   };
 
   return (
@@ -70,18 +70,19 @@ function App() {
                 //function
                 onClick={() => {
                   handleAudiobookClick(audioBook);
-                  printToScreen(audioBook);
                 }}
               >
                 <h3>{audioBook.title}</h3>
                 <p>{audioBook.author}</p>
-                <p>{audioBook.bookLength}</p>
+                {/* <p>{audioBook.bookLength}</p>
                 <p>{audioBook.language}</p>
-                <p>{audioBook.summary}</p>
+                <p>{audioBook.summary}</p> */}
                 <p>£{audioBook.price}</p>
+                <img src={BookImage} alt="book" width={200} />
+
                 {/* button to pass audiobook object directly to basket */}
                 <button
-                  className="add-Audiobook-button"
+                  className="add-audiobook-button"
                   onClick={() => addAudiobookToBasket(audioBook)}
                 >
                   <h3>Add to basket</h3>
