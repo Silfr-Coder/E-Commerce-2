@@ -1,14 +1,14 @@
 import App from "../App";
 
-function AudiobookPage({ selectedAudiobook }) {
+function AudiobookPage({ audioBook }) {
   return (
     <div>
-      <h3>title={selectedAudiobook.title}</h3>
-      <p>author={selectedAudiobook.author}</p>
-      <p>bookLength={selectedAudiobook.bookLength}</p>
-      <p>language={selectedAudiobook.language}</p>
-      <p>summary={selectedAudiobook.summary}</p>
-      <p>£{selectedAudiobook.price}</p>
+      <h3>Title: {audioBook.title}</h3>
+      <p>author: {audioBook.author}</p>
+      <p>bookLength: {audioBook.bookLength}</p>
+      <p>language: {audioBook.language}</p>
+      <p>summary: {audioBook.summary}</p>
+      <p>£{audioBook.price}</p>
     </div>
   );
 }

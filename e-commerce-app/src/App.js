@@ -48,11 +48,10 @@ function App() {
   // function to handle the click event is an audiobook is clicked
   const handleAudiobookClick = (audioBook) => {
     setSelectedAudiobook(audioBook);
-    printToScreen(audioBook);
   };
 
   const printToScreen = (audioBook) => {
-    console.log(audioBook.title);
+    console.log(selectedAudiobook);
   };
 
   return (
@@ -62,6 +61,12 @@ function App() {
         {/* display the main content here */}
         <div className="main-page-content">
           <div className="books-container">
+            {selectedAudiobook && (
+              <AudiobookPage
+                audioBook={selectedAudiobook}
+                onClose={() => setSelectedAudiobook(null)}
+              />
+            )}
             {audioBookList.map((audioBook, index) => (
               <div
                 key={index}

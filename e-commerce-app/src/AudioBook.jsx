@@ -11,7 +11,7 @@ class AudioBook {
 }
 //  Creating instances of the audiobooks
 let AtomicHabits = new AudioBook(
-  "Atom Habits",
+  "Atomic Habits",
   "James Clear",
   8.0,
   "5hrs and 35mins",
