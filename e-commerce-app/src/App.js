@@ -8,7 +8,8 @@ import AudiobookPage from "./Components/AudiobookPage";
 import BookImage from "./Components/open-book-2.jpeg";
 
 function App() {
-  // using the useState hook to manage the state of the basket and the total cost
+  // using the useState hook to manage the state of the basket
+  //and the total cost
   const [basket, setBasket] = useState([]);
   const [total, setTotal] = useState(0);
 
@@ -49,7 +50,7 @@ function App() {
   const handleAudiobookClick = (audioBook) => {
     setSelectedAudiobook(audioBook);
   };
-
+  //temporary function to print the selected audiobook to the console
   const printToScreen = (audioBook) => {
     console.log(selectedAudiobook);
   };
@@ -58,43 +59,47 @@ function App() {
     <>
       <div className="App-container">
         <Header headerItems={headerItems} />
-        {/* display the main content here */}
+        {/* display the main content of audiobooks here */}
         <div className="main-page-content">
-          <div className="books-container">
-            {selectedAudiobook && (
+          {/* if no audiobook is selected, display the whole list of audiobooks */}
+          {!selectedAudiobook && (
+            <div className="books-container">
+              {/* map through the audiobook list and display each audiobook */}
+              {audioBookList.map((audioBook, index) => (
+                <div>
+                  <div
+                    key={index}
+                    className="audiobook-container"
+                    // pass the audiobook object to the handleAudiobookClick
+                    // function
+                    onClick={() => handleAudiobookClick(audioBook)}
+                  >
+                    {/* display audiobook details and image */}
+                    <h3>{audioBook.title}</h3>
+                    <p>{audioBook.author}</p>
+                    <p>£{audioBook.price}</p>
+                    <img src={BookImage} alt="book" width={200} />
+                  </div>
+
+                  {/* button to pass audiobook object directly to basket */}
+                  <button
+                    className="add-audiobook-button"
+                    onClick={() => addAudiobookToBasket(audioBook)}
+                  >
+                    <h3>Add to basket</h3>
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+          {selectedAudiobook && (
+            <div className="books-container">
               <AudiobookPage
                 audioBook={selectedAudiobook}
                 onClose={() => setSelectedAudiobook(null)}
               />
-            )}
-            {audioBookList.map((audioBook, index) => (
-              <div
-                key={index}
-                className="audiobook-container"
-                // pass the audiobook object to the handleAudiobookClick
-                //function
-                onClick={() => {
-                  handleAudiobookClick(audioBook);
-                }}
-              >
-                <h3>{audioBook.title}</h3>
-                <p>{audioBook.author}</p>
-                {/* <p>{audioBook.bookLength}</p>
-                <p>{audioBook.language}</p>
-                <p>{audioBook.summary}</p> */}
-                <p>£{audioBook.price}</p>
-                <img src={BookImage} alt="book" width={200} />
-
-                {/* button to pass audiobook object directly to basket */}
-                <button
-                  className="add-audiobook-button"
-                  onClick={() => addAudiobookToBasket(audioBook)}
-                >
-                  <h3>Add to basket</h3>
-                </button>
-              </div>
-            ))}
-          </div>
+            </div>
+          )}
           <div className="basket-container">
             {/* display the basket here */}
             <h3>Basket</h3>
