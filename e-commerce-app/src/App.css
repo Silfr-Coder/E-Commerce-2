@@ -2,11 +2,40 @@
   margin: 0;
   padding: 0;
 }
-
 .App-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.welcome-box {
+  margin-top: 100px;
+  font-size: 35px;
+  text-align: center;
+  color: black;
+  background-color: #ffd700;
+  text-shadow: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  margin: 200px;
+}
+#username {
+  font-size: 25px;
+  text-align: center;
+  color: black;
+}
+#submit {
+  width: 100px;
+  padding: 3px;
+  border: 1px solid #ccc;
+  background-color: #ffd700;
+  color: black;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px;
+  box-shadow: 10px 10px 10px #555353;
+  cursor: pointer;
 }
 
 .main-page-content {
@@ -18,7 +47,6 @@
   width: 100%;
   padding: 20px;
 }
-
 /* header items to be rendered */
 .header-container {
   position: fixed;
@@ -34,7 +62,7 @@
   background-image: linear-gradient(blue, yellow);
   z-index: 100;
 }
-
+/* Logo */
 .header-logo-box {
   position: relative;
   width: 250px;
@@ -49,11 +77,11 @@
 .header-logo-box:hover {
   color: #ffd700;
   box-shadow: 20px black;
-  cursor: pointer;
   font-size: 350%;
   width: 300%;
   height: 110%;
 }
+/* username */
 .header-username-box {
   width: 200px;
   height: 25px;
@@ -62,27 +90,8 @@
   text-align: center;
   align-items: center;
   color: #ffd700;
-  /* background-image: linear-gradient(blue, yellow); */
 }
-/* .header-username-box:hover {
-  color: #ffd700;
-  box-shadow: 20px black;
-} */
-/* .header-credit-box {
-  width: 200px;
-  height: 25px;
-  box-shadow: 10px 10px 10px #555355;
-  font-size: 20px;
-  text-align: left;
-  padding: 5px 0px 0px 10px;
-  color: white;
-  background-color: 028ff0;
-  border-radius: 5px;
-}
-.header-credit-box:hover {
-  color: #ffd700;
-  box-shadow: 20px black;
-} */
+/* welcome text */
 .header-welcome-box {
   width: 350px;
   height: 50px;
@@ -92,6 +101,7 @@
   text-align: left;
   text-shadow: 25px;
 }
+/* total cost summary */
 .header-spend-summary-box {
   width: 200px;
   height: 35px;
@@ -107,13 +117,13 @@
   box-shadow: 20px black;
 }
 /* main paige, audiobooks elements to be rendered */
-
 .books-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
   width: calc(75% - 20px);
+  margin-top: 20px;
 }
 .audiobook-wrapper {
   display: flex;
@@ -130,61 +140,101 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  background-color: #faf3c9;
+  margin-bottom: 0;
 }
 
+.home-button,
+.add-audiobook-button,
 .audiobook-container:hover {
   box-shadow: 10px 10px 10px #555353;
   cursor: pointer;
 }
 
-.add-audiobook-button {
-  width: 200px;
+.add-audiobook-button,
+.home-button {
+  width: 250px;
   padding: 10px;
   border: 1px solid #ccc;
   background-color: #ffd700;
-  color: white;
+  color: black;
   font-size: 16px;
   text-align: center;
   border-radius: 5px;
+  margin: 10px;
 }
 
 .basket-container {
   position: fixed;
-  top: 146px;
+  top: 145px;
   right: 0;
   bottom: 0;
   width: 20%;
   padding: 20px;
   background-image: linear-gradient(yellow, blue);
 }
-
-/* footer items to be rendered */
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 20px;
-  text-align: center;
-  margin: 1px;
-  padding: 20px;
-  background-image: linear-gradient(yellow, blue);
-}
-.footer-home,
-.footer-top-of-page {
-  width: 20%;
-  margin: auto;
-  align-items: stretch;
+li {
+  list-style-type: none;
+  margin: 18px;
+  padding: 1px;
   border: 1px solid #ccc;
-  background-color: #ffd700;
+  background-color: #faf3c9;
   color: black;
+  font-size: 14px;
   text-align: center;
   border-radius: 5px;
   box-shadow: 10px 10px 10px black;
 }
-.footer-home,
-.footer-top-of-page:hover {
+
+img {
+  width: 200px;
+  height: 100px;
+  margin: 10px;
+}
+
+.remove-Audiobook-button {
+  width: 120px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  background-color: #ffd700;
+  color: black;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.top-of-page-btn {
+  width: 20%;
+  border: 1px solid #ccc;
+  background-color: #ffd700;
+  color: black;
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px #555353;
+  padding: 5px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 5px;
+  right: 80px;
+}
+.top-of-page-btn:hover,
+.add-audiobook-button:hover,
+.home-button:hover {
   cursor: pointer;
+  box-shadow: 10px 10px 10px black;
+}
+
+/* postioning of the audiobook content on information page */
+.audiobook-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  padding: 20px;
+  max-width: 1000px;
+  width: 100%;
 }
