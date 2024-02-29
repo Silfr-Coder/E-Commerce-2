@@ -66,7 +66,7 @@ function App() {
             <div className="books-container">
               {/* map through the audiobook list and display each audiobook */}
               {audioBookList.map((audioBook, index) => (
-                <div>
+                <div className="audiobook-wrapper">
                   <div
                     key={index}
                     className="audiobook-container"

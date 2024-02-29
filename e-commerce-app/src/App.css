@@ -10,6 +10,7 @@
 }
 
 .main-page-content {
+  margin-top: 100px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -20,16 +21,18 @@
 
 /* header items to be rendered */
 .header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: max-content;
   gap: 10px;
-  width: 100%;
   justify-content: space-around;
-  margin: 1px;
   padding: 10px;
-  /* background-color: #028ff0; */
   background-image: linear-gradient(blue, yellow);
+  z-index: 100;
 }
 
 .header-logo-box {
@@ -110,40 +113,49 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
-  width: 75%;
+  width: calc(75% - 20px);
+}
+.audiobook-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .audiobook-container {
-  width: calc(30.33% - 20px);
-  margin-bottom: 50px;
+  width: 200px;
+  height: 220px;
+  margin: 50px;
   padding: 10px;
   border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
 .audiobook-container:hover {
   box-shadow: 10px 10px 10px #555353;
   cursor: pointer;
 }
 
-/* basket elements to be rendered */
+.add-audiobook-button {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #ffd700;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 5px;
+}
+
 .basket-container {
-  position: absolute;
+  position: fixed;
   top: 146px;
   right: 0;
   bottom: 0;
   width: 20%;
   padding: 20px;
-}
-
-.add-audiobook-button {
-  width: 100px;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  background-color: #ffd700;
-  color: white;
-  font-size: 20px;
-  text-align: center;
-  border-radius: 5px;
-  bottom: 0;
+  background-image: linear-gradient(yellow, blue);
 }
 
 /* footer items to be rendered */
