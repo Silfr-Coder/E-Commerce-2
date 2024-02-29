@@ -4,6 +4,7 @@ import { audioBookList } from "./AudioBook";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import { useState } from "react";
+import { useRef } from "react";
 import AudiobookPage from "./Components/AudiobookPage";
 import BookImage from "./Components/open-book-2.jpeg";
 
@@ -24,11 +25,10 @@ function App() {
       text: "Total: £" + total.toFixed(2),
     },
   ];
-  // setting up the footer
-  const footerItems = [
-    // { className: "footer-home", text: "Home" },
-    { className: "footer-top-of-page", text: "Top of Page" },
-  ];
+  // setup scroll to top button
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
 
   // function to add audiobook to basket and update the total cost
   const addAudiobookToBasket = (audioBook) => {
@@ -43,7 +43,7 @@ function App() {
     setTotal(total + audioBook.price);
   };
 
-  //
+  // update the selected audiobook
   const [selectedAudiobook, setSelectedAudiobook] = useState(null);
 
   // function to handle the click event is an audiobook is clicked
@@ -52,7 +52,7 @@ function App() {
   };
   //temporary function to print the selected audiobook to the console
   const printToScreen = (audioBook) => {
-    console.log(selectedAudiobook);
+    console.log("Something was clicked", audioBook);
   };
 
   return (
@@ -95,6 +95,7 @@ function App() {
           {selectedAudiobook && (
             <div className="books-container">
               <AudiobookPage
+                addAudiobookToBasket={addAudiobookToBasket}
                 audioBook={selectedAudiobook}
                 onClose={() => setSelectedAudiobook(null)}
               />
@@ -129,8 +130,9 @@ function App() {
             <h3>Total: £{parseFloat(total).toFixed(2)}</h3>
           </div>
         </div>
-        {/* display footer here */}
-        <Footer footerItems={footerItems} />
+        <button className="footer-top-of-page" onClick={scrollToTop}>
+          Back to top
+        </button>
       </div>
     </>
   );
