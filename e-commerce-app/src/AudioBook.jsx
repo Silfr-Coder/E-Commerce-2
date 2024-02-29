@@ -92,7 +92,14 @@ let TheMiracleMorning = new AudioBook(
   "The 6 Habits That Will Transform Your Life Before 8AM: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lobortis nulla nibh, at dictum ipsum maximus in. Proin faucibus nunc eget lorem suscipit convallis. Nam eu felis eu massa sagittis ullamcorper eu at mauris. Quisque non velit non dolor dapibus interdum non vel tellus. Pellentesque placerat euismod congue. Maecenas iaculis vitae ipsum et elementum. Praesent tristique diam erat, at mattis justo ornare sed. Vestibulum nec tortor in ipsum tempor elementum. Nam viverra dapibus lacus sagittis dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam sem mauris, blandit sit amet dolor nec, vehicula fringilla ligula. Morbi faucibus nunc eu lorem accumsan, vel rutrum mauris imperdiet. Integer tempus finibus dui, at sollicitudin orci ornare non. Ut urna est, hendrerit eget efficitur sit amet, auctor in ante. Etiam ut nisi eget tellus bibendum mollis. Suspendisse facilisis ex ut tincidunt aliquam. Fusce id pellentesque nibh. Aenean ligula quam, luctus non feugiat eu, venenatis id metus. Morbi ornare consequat ligula sed ornare. Suspendisse in lorem vel dui dapibus tempor ut non sem. Cras sagittis, eros quis laoreet lacinia, tellus est ullamcorper felis, sit amet commodo nunc sapien eleifend dolor. Aliquam vitae nunc ac turpis dictum semper et eu orci. Duis ultricies dapibus erat, non vehicula nulla euismod at.",
   "BookImage"
 );
-
+let NeverFinished = new AudioBook(
+  "Never Finished",
+  "David Goggins",
+  12.99,
+  "11hrs and 6mins",
+  "English",
+  "Unshackle Your Mind and Win the War Within"
+);
 // create a list of all the books to export
 const audioBookList = [
   AtomicHabits,
@@ -104,6 +111,7 @@ const audioBookList = [
   ScarySmart,
   ThePowerOfNow,
   TheMiracleMorning,
+  NeverFinished,
 ];
 
 // export audiobookList as a named export, a list of objects as a React component

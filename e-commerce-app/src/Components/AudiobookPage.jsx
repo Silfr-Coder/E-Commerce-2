@@ -4,7 +4,6 @@ import BookImage from "../Components/open-book-2.jpeg";
 
 function AudiobookPage({ audioBook, addAudiobookToBasket, onClose }) {
   const handleAddToBasket = () => {
-    console.log("add to basket clicked");
     addAudiobookToBasket(audioBook);
   };
   return (
@@ -12,7 +11,6 @@ function AudiobookPage({ audioBook, addAudiobookToBasket, onClose }) {
       <div className="audiobook-info-wrapper">
         <div className="audiobook-info">
           <img src={BookImage} alt="book" width={200} />
-
           <h3>Title: {audioBook.title}</h3>
           <h4>Author: {audioBook.author}</h4>
           <p>BookLength: {audioBook.bookLength}</p>
