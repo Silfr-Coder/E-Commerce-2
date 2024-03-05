@@ -91,6 +91,19 @@
   align-items: center;
   color: #ffd700;
 }
+.Logout-button {
+  width: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #ffd700;
+  color: black;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px;
+  box-shadow: 10px 10px 10px #555353;
+  cursor: pointer;
+}
 /* welcome text */
 .header-welcome-box {
   width: 350px;

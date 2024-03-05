@@ -1,10 +1,12 @@
 import "./App.css";
-import AudioBook from "./AudioBook";
+// AudioBook is assigned a value but never used  no-unused-vars
+// import AudioBook from "./AudioBook";
 import { audioBookList } from "./AudioBook";
 import Header from "./Components/Header";
 import WelcomeBox from "./Components/WelcomeBox";
 import React, { useState, useEffect } from "react";
-import { useRef } from "react";
+// useref is defined but never used  no-unused-vars
+// import { useRef } from "react";
 import AudiobookPage from "./Components/AudiobookPage";
 import BookImage from "./Components/open-book-2.jpeg";
 
@@ -35,6 +37,11 @@ function App() {
       className: "header-username-box",
       text: username ? `Welcome, ${username}` : "",
     },
+    {
+      className: "Logout-button",
+      text: "Logout",
+      onClick: () => setUsername(""), // set username to empty string,
+    },
     { className: "header-welcome-box", text: "" },
     {
       className: "header-spend-summary-box",
@@ -49,14 +56,14 @@ function App() {
 
   // function to add audiobook to basket and update the total cost
   const addAudiobookToBasket = (audioBook) => {
-    console.log(audioBook);
     //add the audiobook to the basket
     setBasket([...basket, audioBook]);
     //update the total cost and make audioBook.price a number
-    const price = parseFloat(audioBook.price);
-    console.log(audioBook.price);
+    // price is assigned a value but never used  no-unused-vars
+    // const price = parseFloat(audioBook.price);
     //update the total cost and round to 2 decimal places
-    const newTotal = parseFloat(total + price).toFixed(2);
+    // newTotal is assigned a value but never used  no-unused-vars
+    // const newTotal = parseFloat(total + price).toFixed(2);
     setTotal(total + audioBook.price);
   };
 
@@ -68,17 +75,18 @@ function App() {
     setSelectedAudiobook(audioBook);
   };
   //temporary function to print the selected audiobook to the console
-  const printToScreen = (audioBook) => {
-    console.log("Something was clicked", audioBook);
-  };
+  // const printToScreen = () => {
+  //   console.log("Something was clicked");
+  // };
 
   return (
     <>
       <div className="App-container">
+        {/* display the header */}
         <Header headerItems={headerItems} />
         {/* display the main content of audiobooks here */}
         <div className="main-page-content">
-          {username ? ( // If username is set, display audiobooks
+          {username ? ( // If username is set, display main page
             <>
               {/* if no audiobook is selected, display the whole list of audiobooks */}
               {!selectedAudiobook && (
