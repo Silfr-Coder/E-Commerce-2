@@ -1,12 +1,8 @@
 import "./App.css";
-// AudioBook is assigned a value but never used  no-unused-vars
-// import AudioBook from "./AudioBook";
 import { audioBookList } from "./AudioBook";
 import Header from "./Components/Header";
 import WelcomeBox from "./Components/WelcomeBox";
 import React, { useState, useEffect } from "react";
-// useref is defined but never used  no-unused-vars
-// import { useRef } from "react";
 import AudiobookPage from "./Components/AudiobookPage";
 import BookImage from "./Components/open-book-2.jpeg";
 
@@ -17,7 +13,7 @@ function App() {
   const [total, setTotal] = useState(0);
   const [username, setUsername] = useState("");
 
-  // using the useEffect hook to update the username
+  // using the useEffect hook to update the username using local storage
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
     if (storedUsername) {
@@ -30,25 +26,6 @@ function App() {
     localStorage.setItem("username", username);
   }, [username]);
 
-  // setting-up the header
-  const headerItems = [
-    { className: "header-logo-box", text: "Ear Candy" },
-    {
-      className: "header-username-box",
-      text: username ? `Welcome, ${username}` : "",
-    },
-    {
-      className: "Logout-button",
-      text: "Logout",
-      onClick: () => setUsername(""), // set username to empty string,
-    },
-    { className: "header-welcome-box", text: "" },
-    {
-      className: "header-spend-summary-box",
-      text: "Total: £" + total.toFixed(2),
-    },
-  ];
-
   // setup scroll to top button
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -59,11 +36,7 @@ function App() {
     //add the audiobook to the basket
     setBasket([...basket, audioBook]);
     //update the total cost and make audioBook.price a number
-    // price is assigned a value but never used  no-unused-vars
-    // const price = parseFloat(audioBook.price);
     //update the total cost and round to 2 decimal places
-    // newTotal is assigned a value but never used  no-unused-vars
-    // const newTotal = parseFloat(total + price).toFixed(2);
     setTotal(total + audioBook.price);
   };
 
@@ -75,15 +48,39 @@ function App() {
     setSelectedAudiobook(audioBook);
   };
   //temporary function to print the selected audiobook to the console
-  // const printToScreen = () => {
-  //   console.log("Something was clicked");
-  // };
+  const printToScreen = () => {
+    console.log("Something was clicked");
+  };
+
+  const handleLogout = () => {
+    console.log("Logout button clicked. Current username:", username);
+    setUsername("");
+    console.log("Username after logout:", username);
+  };
 
   return (
     <>
       <div className="App-container">
         {/* display the header */}
-        <Header headerItems={headerItems} />
+        <Header
+          headerItems={[
+            { className: "header-logo-box", text: "Ear Candy" },
+            {
+              className: "header-username-box",
+              text: username ? `Welcome, ${username}` : "",
+            },
+            {
+              className: "Logout-button",
+              text: "Logout",
+              onClick: handleLogout, // set username to empty string,
+            },
+            { className: "header-welcome-box", text: "" },
+            {
+              className: "header-spend-summary-box",
+              text: "Total: £" + total.toFixed(2),
+            },
+          ]}
+        />
         {/* display the main content of audiobooks here */}
         <div className="main-page-content">
           {username ? ( // If username is set, display main page

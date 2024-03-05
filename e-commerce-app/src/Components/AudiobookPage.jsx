@@ -2,11 +2,14 @@ import App from "../App";
 import React from "react";
 import BookImage from "../Components/open-book-2.jpeg";
 
+// AudiobookPage component is used to render the audiobook information to the screen
+// it takes in the audiobook information as a prop and renders it to the screen
 function AudiobookPage({ audioBook, addAudiobookToBasket, onClose }) {
   const handleAddToBasket = () => {
     addAudiobookToBasket(audioBook);
   };
   return (
+    // rendering the audiobook information to the screen
     <>
       <div className="audiobook-info-wrapper">
         <div className="audiobook-info">
