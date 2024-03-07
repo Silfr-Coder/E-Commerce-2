@@ -1,7 +1,6 @@
 import "./App.css";
 import { audioBookList } from "./AudioBook";
 import Header from "./Components/Header";
-// import WelcomeBox from "./Components/WelcomeBox";
 import React, { useState, useEffect } from "react";
 import AudiobookPage from "./Components/AudiobookPage";
 import BookImage from "./Components/open-book-2.jpeg";
@@ -11,6 +10,9 @@ function App() {
   // the total cost and username
   const [basket, setBasket] = useState([]);
   const [total, setTotal] = useState(0);
+  // update the selected audiobook
+  const [selectedAudiobook, setSelectedAudiobook] = useState(null);
+  // using the useState hook to manage the state of the username
   const [username, setUsername] = useState("");
 
   // using the useEffect hook to update the username using local storage
@@ -39,9 +41,6 @@ function App() {
     setTotal(total + audioBook.price);
   };
 
-  // update the selected audiobook
-  const [selectedAudiobook, setSelectedAudiobook] = useState(null);
-
   // function to handle the click event is an audiobook is clicked
   const handleAudiobookClick = (audioBook) => {
     setSelectedAudiobook(audioBook);
@@ -50,16 +49,18 @@ function App() {
   const printToScreen = () => {
     console.log("Something was clicked");
   };
-  // // function to handle the logout button
-  // const handleLogout = () => {
-  //   console.log("Logout button clicked. Current username:", username);
-  //   setUsername("");
-  // };
+
   // add useEffect to print the username to the console when it changes
   useEffect(() => {
     console.log("Username has changed to:", username);
   }, [username]);
 
+  // function to handle the close event of the audiobook page
+  const handleCloseAudiobookPage = () => {
+    setSelectedAudiobook(null);
+  };
+
+  // return the main content of the app
   return (
     <>
       <div className="App-container">
@@ -72,11 +73,6 @@ function App() {
               //using the ternary operator to display the username if it is set
               text: username ? `Welcome, ${username}` : "",
             },
-            // {
-            //   className: "Logout-button",
-            //   text: "Logout",
-            //   onClick: handleLogout, // set username to empty string,
-            // },
             { className: "header-welcome-box", text: "" },
             {
               className: "header-spend-summary-box",
@@ -86,10 +82,18 @@ function App() {
         />
         {/* display the main content of audiobooks here */}
         <div className="main-page-content">
-          {/* {username ? ( // If username is set, display main page */}
-          <>
-            {/* if no audiobook is selected, display the whole list of audiobooks */}
-            {/* {!selectedAudiobook && ( */}
+          {/* using ternary check if audiobook is selected */}
+          {selectedAudiobook ? (
+            // if audiobook is not selected, display the audiobook page
+            <div className="books-container">
+              <AudiobookPage
+                addAudiobookToBasket={addAudiobookToBasket}
+                audioBook={selectedAudiobook}
+                onClose={handleCloseAudiobookPage}
+              />
+            </div>
+          ) : (
+            // if audiobook is selected, display the audiobook list
             <div className="books-container">
               {/* map through the audiobook list and display each audiobook */}
               {audioBookList.map((audioBook, index) => (
@@ -115,49 +119,36 @@ function App() {
                 </div>
               ))}
             </div>
-            {/* )} */}
-            {/* If audiobook is selected, display audiobook page */}
-            {selectedAudiobook && (
-              <div className="books-container">
-                <AudiobookPage
-                  addAudiobookToBasket={addAudiobookToBasket}
-                  audioBook={selectedAudiobook}
-                  onClose={() => setSelectedAudiobook(null)}
-                />
-              </div>
-            )}
-          </>
-          {/* ) : ( // If username is not set, display WelcomeBox
-          <WelcomeBox setUsername={setUsername} /> */}
-          {/* )} */}
-          {/* Display the basket */}
-          <div className="basket-container">
-            <h3>Basket</h3>
-            <ul>
-              {basket.map((audioBook, index) => (
-                <li key={index}>
-                  <p>
-                    {audioBook.title}: £{audioBook.price}
-                  </p>
-                  {/* button to remove audiobook from basket */}
-                  <button
-                    className="remove-Audiobook-button"
-                    onClick={() => {
-                      const newBasket = [...basket];
-                      newBasket.splice(index, 1);
-                      setBasket(newBasket);
-                      setTotal(total - audioBook.price);
-                    }}
-                  >
-                    <h5>Remove from basket</h5>
-                  </button>
-                </li>
-              ))}
-            </ul>
-            <h3>Total: £{parseFloat(total).toFixed(2)}</h3>
-          </div>
+          )}
         </div>
       </div>
+      {/* Display the basket */}
+      <div className="basket-container">
+        <h3>Basket</h3>
+        <ul>
+          {basket.map((audioBook, index) => (
+            <li key={index}>
+              <p>
+                {audioBook.title}: £{audioBook.price}
+              </p>
+              {/* button to remove audiobook from basket */}
+              <button
+                className="remove-Audiobook-button"
+                onClick={() => {
+                  const newBasket = [...basket];
+                  newBasket.splice(index, 1);
+                  setBasket(newBasket);
+                  setTotal(total - audioBook.price);
+                }}
+              >
+                <h5>Remove from basket</h5>
+              </button>
+            </li>
+          ))}
+        </ul>
+        <h3>Total: £{parseFloat(total).toFixed(2)}</h3>
+      </div>
+
       {/* Scroll to top of page button */}
       <button className="top-of-page-btn" onClick={scrollToTop}>
         Back to top
