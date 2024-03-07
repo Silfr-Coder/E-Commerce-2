@@ -1,7 +1,7 @@
 import "./App.css";
 import { audioBookList } from "./AudioBook";
 import Header from "./Components/Header";
-import WelcomeBox from "./Components/WelcomeBox";
+// import WelcomeBox from "./Components/WelcomeBox";
 import React, { useState, useEffect } from "react";
 import AudiobookPage from "./Components/AudiobookPage";
 import BookImage from "./Components/open-book-2.jpeg";
@@ -35,8 +35,7 @@ function App() {
   const addAudiobookToBasket = (audioBook) => {
     //add the audiobook to the basket
     setBasket([...basket, audioBook]);
-    //update the total cost and make audioBook.price a number
-    //update the total cost and round to 2 decimal places
+    //update the total cost
     setTotal(total + audioBook.price);
   };
 
@@ -51,12 +50,15 @@ function App() {
   const printToScreen = () => {
     console.log("Something was clicked");
   };
-
-  const handleLogout = () => {
-    console.log("Logout button clicked. Current username:", username);
-    setUsername("");
-    console.log("Username after logout:", username);
-  };
+  // // function to handle the logout button
+  // const handleLogout = () => {
+  //   console.log("Logout button clicked. Current username:", username);
+  //   setUsername("");
+  // };
+  // add useEffect to print the username to the console when it changes
+  useEffect(() => {
+    console.log("Username has changed to:", username);
+  }, [username]);
 
   return (
     <>
@@ -66,14 +68,15 @@ function App() {
           headerItems={[
             { className: "header-logo-box", text: "Ear Candy" },
             {
-              className: "header-username-box",
+              className: "headerhandle-username-box",
+              //using the ternary operator to display the username if it is set
               text: username ? `Welcome, ${username}` : "",
             },
-            {
-              className: "Logout-button",
-              text: "Logout",
-              onClick: handleLogout, // set username to empty string,
-            },
+            // {
+            //   className: "Logout-button",
+            //   text: "Logout",
+            //   onClick: handleLogout, // set username to empty string,
+            // },
             { className: "header-welcome-box", text: "" },
             {
               className: "header-spend-summary-box",
@@ -83,51 +86,50 @@ function App() {
         />
         {/* display the main content of audiobooks here */}
         <div className="main-page-content">
-          {username ? ( // If username is set, display main page
-            <>
-              {/* if no audiobook is selected, display the whole list of audiobooks */}
-              {!selectedAudiobook && (
-                <div className="books-container">
-                  {/* map through the audiobook list and display each audiobook */}
-                  {audioBookList.map((audioBook, index) => (
-                    <div className="audiobook-wrapper" key={index}>
-                      <div
-                        className="audiobook-container"
-                        // pass the audiobook object to the handleAudiobookClick function
-                        onClick={() => handleAudiobookClick(audioBook)}
-                      >
-                        {/* display audiobook details and image */}
-                        <h3>{audioBook.title}</h3>
-                        <p>{audioBook.author}</p>
-                        <p>£{audioBook.price}</p>
-                        <img src={BookImage} alt="book" />
-                      </div>
-                      {/* button to pass audiobook object directly to basket */}
-                      <button
-                        className="add-audiobook-button"
-                        onClick={() => addAudiobookToBasket(audioBook)}
-                      >
-                        <h3>Add to basket</h3>
-                      </button>
-                    </div>
-                  ))}
+          {/* {username ? ( // If username is set, display main page */}
+          <>
+            {/* if no audiobook is selected, display the whole list of audiobooks */}
+            {/* {!selectedAudiobook && ( */}
+            <div className="books-container">
+              {/* map through the audiobook list and display each audiobook */}
+              {audioBookList.map((audioBook, index) => (
+                <div className="audiobook-wrapper" key={index}>
+                  <div
+                    className="audiobook-container"
+                    // pass the audiobook object to the handleAudiobookClick function
+                    onClick={() => handleAudiobookClick(audioBook)}
+                  >
+                    {/* display audiobook details and image */}
+                    <h3>{audioBook.title}</h3>
+                    <p>{audioBook.author}</p>
+                    <p>£{audioBook.price}</p>
+                    <img src={BookImage} alt="book" />
+                  </div>
+                  {/* button to pass audiobook object directly to basket */}
+                  <button
+                    className="add-audiobook-button"
+                    onClick={() => addAudiobookToBasket(audioBook)}
+                  >
+                    <h3>Add to basket</h3>
+                  </button>
                 </div>
-              )}
-              {/* If audiobook is selected, display audiobook page */}
-              {selectedAudiobook && (
-                <div className="books-container">
-                  <AudiobookPage
-                    addAudiobookToBasket={addAudiobookToBasket}
-                    audioBook={selectedAudiobook}
-                    onClose={() => setSelectedAudiobook(null)}
-                  />
-                </div>
-              )}
-            </>
-          ) : (
-            // If username is not set, display WelcomeBox
-            <WelcomeBox setUsername={setUsername} />
-          )}
+              ))}
+            </div>
+            {/* )} */}
+            {/* If audiobook is selected, display audiobook page */}
+            {selectedAudiobook && (
+              <div className="books-container">
+                <AudiobookPage
+                  addAudiobookToBasket={addAudiobookToBasket}
+                  audioBook={selectedAudiobook}
+                  onClose={() => setSelectedAudiobook(null)}
+                />
+              </div>
+            )}
+          </>
+          {/* ) : ( // If username is not set, display WelcomeBox
+          <WelcomeBox setUsername={setUsername} /> */}
+          {/* )} */}
           {/* Display the basket */}
           <div className="basket-container">
             <h3>Basket</h3>
