@@ -1,9 +1,11 @@
 const express = require("express");
 const sql = require("mssql");
 const app = express();
-const port = 3000;
+const port = 3001;
+const cors = require("cors");
 
 app.use(express.json());
+app.use(cors());
 
 const sqlConfig = {
   server: "172.187.184.173",

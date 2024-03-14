@@ -4,6 +4,7 @@ import Header from "./Components/Header";
 import React, { useState, useEffect } from "react";
 import AudiobookPage from "./Components/AudiobookPage";
 import BookImage from "./Components/open-book-2.jpeg";
+import { getAudiobooks } from "./e-commerce-API";
 
 function App() {
   // using the useState hook to manage the state of the basket,
@@ -60,6 +61,16 @@ function App() {
     setSelectedAudiobook(null);
   };
 
+  const [audioBookList, setAudioBookList] = useState([]);
+  async function fetchAudioBooks() {
+    const audioBooks = await getAudiobooks();
+    console.log(audioBooks);
+    setAudioBookList(audioBooks);
+  }
+  useEffect(() => {
+    fetchAudioBooks();
+  }, []);
+
   // return the main content of the app
   return (
     <>
@@ -86,11 +97,16 @@ function App() {
           {selectedAudiobook ? (
             // if audiobook is not selected, display the audiobook page
             <div className="books-container">
-              <AudiobookPage
-                addAudiobookToBasket={addAudiobookToBasket}
-                audioBook={selectedAudiobook}
-                onClose={handleCloseAudiobookPage}
-              />
+              {audioBookList.length > 0 &&
+                audioBookList.map((audioBook, index) => {
+                  return <h1>{audioBook.audioBook}</h1>;
+                })}
+
+              {/* <AudiobookPage
+              addAudiobookToBasket={addAudiobookToBasket}
+              audioBook={selectedAudiobook}
+              onClose={handleCloseAudiobookPage}
+              /> */}
             </div>
           ) : (
             // if audiobook is selected, display the audiobook list
