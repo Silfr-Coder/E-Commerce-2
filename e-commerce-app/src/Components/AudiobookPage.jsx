@@ -21,7 +21,7 @@ function AudiobookPage({ audioBook, addAudiobookToBasket, onClose }) {
           <p>
             <strong>Summary:</strong> {audioBook.summary}
           </p>
-          <p>Price: £{audioBook.price}</p>
+          <p>Price: £{audioBook.price.toFixed(2)}</p>
         </div>
         <div buttons>
           <button className="add-audiobook-button" onClick={handleAddToBasket}>

@@ -8,30 +8,15 @@ import { getAudiobooks } from "./e-commerce-API";
 
 function App() {
   // using the useState hook to manage the state of the basket,
-  // the total cost and username
+  // the total cost
   const [basket, setBasket] = useState([]);
   const [total, setTotal] = useState(0);
   // update the selected audiobook
   const [selectedAudiobook, setSelectedAudiobook] = useState(null);
-  // using the useState hook to manage the state of the username
-  const [username, setUsername] = useState("");
-
-  // using the useEffect hook to update the username using local storage
-  useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
-    if (storedUsername) {
-      setUsername(storedUsername);
-    }
-  }, []);
-
-  // using the useEffect hook to store the username in the local storage
-  useEffect(() => {
-    localStorage.setItem("username", username);
-  }, [username]);
 
   // setup scroll to top button
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    window.scrollTo({ top: 20, left: 20, behavior: "smooth" });
   };
 
   // function to add audiobook to basket and update the total cost
@@ -45,28 +30,30 @@ function App() {
   // function to handle the click event is an audiobook is clicked
   const handleAudiobookClick = (audioBook) => {
     setSelectedAudiobook(audioBook);
+    console.log(`Audiobook clicked" ${audioBook.title} ${audioBook.author}`);
   };
-  //temporary function to print the selected audiobook to the console
-  const printToScreen = () => {
-    console.log("Something was clicked");
-  };
-
-  // add useEffect to print the username to the console when it changes
-  useEffect(() => {
-    console.log("Username has changed to:", username);
-  }, [username]);
+  // //temporary function to print the selected audiobook to the console
+  // const printToScreen = () => {
+  //   console.log("Something was clicked");
+  // };
 
   // function to handle the close event of the audiobook page
   const handleCloseAudiobookPage = () => {
     setSelectedAudiobook(null);
   };
 
+  // using the useEffect hook to fetch the audiobooks from the Azure database
   const [audioBookList, setAudioBookList] = useState([]);
   async function fetchAudioBooks() {
-    const audioBooks = await getAudiobooks();
-    console.log(audioBooks);
-    setAudioBookList(audioBooks);
+    //including a try catch block to handle any errors
+    try {
+      const audioBooks = await getAudiobooks();
+      setAudioBookList(audioBooks);
+    } catch (error) {
+      console.error("Error fetching audiobooks", error);
+    }
   }
+
   useEffect(() => {
     fetchAudioBooks();
   }, []);
@@ -81,8 +68,7 @@ function App() {
             { className: "header-logo-box", text: "Ear Candy" },
             {
               className: "headerhandle-username-box",
-              //using the ternary operator to display the username if it is set
-              text: username ? `Welcome, ${username}` : "",
+              text: "Welcome: ",
             },
             { className: "header-welcome-box", text: "" },
             {
@@ -97,16 +83,16 @@ function App() {
           {selectedAudiobook ? (
             // if audiobook is not selected, display the audiobook page
             <div className="books-container">
+              display the audiobook page from Azure database
               {audioBookList.length > 0 &&
                 audioBookList.map((audioBook, index) => {
                   return <h1>{audioBook.audioBook}</h1>;
                 })}
-
-              {/* <AudiobookPage
-              addAudiobookToBasket={addAudiobookToBasket}
-              audioBook={selectedAudiobook}
-              onClose={handleCloseAudiobookPage}
-              /> */}
+              <AudiobookPage
+                addAudiobookToBasket={addAudiobookToBasket}
+                audioBook={selectedAudiobook}
+                onClose={handleCloseAudiobookPage}
+              />
             </div>
           ) : (
             // if audiobook is selected, display the audiobook list
@@ -122,7 +108,7 @@ function App() {
                     {/* display audiobook details and image */}
                     <h3>{audioBook.title}</h3>
                     <p>{audioBook.author}</p>
-                    <p>£{audioBook.price}</p>
+                    <p>£{audioBook.price.toFixed(2)}</p>
                     <img src={BookImage} alt="book" />
                   </div>
                   {/* button to pass audiobook object directly to basket */}
@@ -145,7 +131,7 @@ function App() {
           {basket.map((audioBook, index) => (
             <li key={index}>
               <p>
-                {audioBook.title}: £{audioBook.price}
+                {audioBook.title}: £{audioBook.price.toFixed(2)}
               </p>
               {/* button to remove audiobook from basket */}
               <button

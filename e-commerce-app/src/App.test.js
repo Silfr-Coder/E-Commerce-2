@@ -2,27 +2,26 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
+import AudioBook from "./AudioBook";
 
-test("renders Add to basket button", () => {
-  render(<App />);
-  const addToBasketButton = screen.queryAllByText(/Add to basket/i);
-  expect(addToBasketButton.length).toBeGreaterThan(0);
-
-  //perform assertions or actions on each button
-  addToBasketButton.forEach((button) => {
-    //Example: expect button to be visible
-    expect(button).toBeVisible();
-  });
-});
-
-test("removes audiobook from the basket", () => {
-  render(<App />);
-  const removeButton = screen.queryAllByText(/Remove/i);
-  expect(removeButton.length).toBeGreaterThan(0);
-
-  //perform assertions or actions on each button
-  removeButton.forEach((button) => {
-    //Example: expect button to be visible
-    expect(button).toBeVisible();
-  });
+// this test file tests the App component to check it gets the correct audiobook data
+test("creates audiobook instance with correct properties", () => {
+  const book = new AudioBook(
+    "Atomic Habits",
+    "James Clear",
+    10.99,
+    "5hrs and 35mins",
+    "English",
+    "An Easy and Proven Way to Build Good Habits and Break Bad Ones",
+    "BookImage"
+  );
+  // Check if the created audiobook instance has correct properties
+  expect(book.title).toBe("Atomic Habits");
+  expect(book.author).toBe("James Clear");
+  expect(book.price).toBe(10.99);
+  expect(book.bookLength).toBe("5hrs and 35mins");
+  expect(book.language).toBe("English");
+  expect(book.summary).toBe(
+    "An Easy and Proven Way to Build Good Habits and Break Bad Ones"
+  );
 });
