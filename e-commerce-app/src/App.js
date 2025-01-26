@@ -33,9 +33,9 @@ function App() {
     console.log(`Audiobook clicked" ${audioBook.title} ${audioBook.author}`);
   };
   // //temporary function to print the selected audiobook to the console
-  // const printToScreen = () => {
-  //   console.log("Something was clicked");
-  // };
+  const printToScreen = () => {
+    console.log("Something was clicked");
+  };
 
   // function to handle the close event of the audiobook page
   const handleCloseAudiobookPage = () => {
